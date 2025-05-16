@@ -1,3 +1,6 @@
+// Updated Dashboard with feature-based code for conference room booking
+
+// === Dashboard.jsx ===
 import React, { useEffect, useState } from "react";
 import CalendarView from "../features/calendar/CalendarView";
 import BookingModal from "../features/calendar/BookingModal";
@@ -13,9 +16,7 @@ export default function Dashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!authLoading && !user) {
-      navigate("/login");
-    }
+    if (!authLoading && !user) navigate("/login");
   }, [user, authLoading]);
 
   const handleLogout = async () => {
@@ -57,14 +58,12 @@ export default function Dashboard() {
           onDateSelect={(slot) => setSelectedSlot(slot)}
           onEventEdit={(booking) => setEditBooking(booking)}
         />
-        {/* Create Modal */}
         <BookingModal
           isOpen={!!selectedSlot}
           onClose={() => setSelectedSlot(null)}
           selectedSlot={selectedSlot}
           mode="create"
         />
-        {/* Edit Modal */}
         <BookingModal
           isOpen={!!editBooking}
           onClose={() => setEditBooking(null)}
